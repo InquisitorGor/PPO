@@ -14,8 +14,8 @@ namespace ExamApp.database
         private String visa;
 
         
-
-        public Entity(string id, string firstName, string secondName, string lastName, string age, string department, string arrival, string visa)
+        
+        public Entity(string id, string secondName, string firstName, string lastName, string age, string department, string arrival, string visa)
         {
             this.Id = id;
             this.SecondName = secondName;
@@ -26,11 +26,12 @@ namespace ExamApp.database
             this.Arrival = arrival;
             this.Visa = visa;
         }
+        //конструктор для создании записи из файла
         public Entity(String[] str)
         {
             this.Id = str[0];
-            this.SecondName = str[1];
-            this.FirstName = str[2];
+            this.SecondName = str[2];
+            this.FirstName = str[1];
             this.LastName = str[3];
             this.Age = str[4];
             this.Department = str[5];

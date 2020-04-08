@@ -1,12 +1,7 @@
 ﻿using ExamApp.database;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ExamApp.gui.images
@@ -17,16 +12,16 @@ namespace ExamApp.gui.images
         private DataRepository dataRepository;
         private Entity entity;
         private int entityID;
-        private int entityIndex;
-        private bool isForUpdate = false;
+        private bool isForUpdate = false; // флаг, определяющий поведение кнопки "Сохранить"
 
+        //конструктор для добавления записи
         public FormForInteracting(BindingList<Entity> bList, DataRepository dataRepository)
         {
             InitializeComponent();
             this.bList = bList;
             this.dataRepository = dataRepository;
         }
-        //for editing
+        //конструктор для редактирования записи
         public FormForInteracting(BindingList<Entity> bList, DataRepository dataRepository, int entityID)
         {
             InitializeComponent();
@@ -36,6 +31,7 @@ namespace ExamApp.gui.images
             this.isForUpdate = true;
             fillBoxes(entityID);
         }
+        //метод для заполнения ячеек значениями полученной записи
         private void fillBoxes(int entityID)
         {
             entity = bList.ElementAt(getEntityIndex(entityID));
@@ -47,6 +43,7 @@ namespace ExamApp.gui.images
             departmentBox.Text = entity.Department;
             visaBox.Text = entity.Visa;
         }
+        //метод для получения индекса записи в рамках коллекции
         private int getEntityIndex(int entityID)
         {
             int i = 0;
@@ -60,11 +57,13 @@ namespace ExamApp.gui.images
             }
             return 0;
         }
-        private void button1_Click(object sender, EventArgs e)
+        //слушатель для кнопки сохранить
+        private void saveButtonListener(object sender, EventArgs e)
         {
-            if (isForUpdate) editEntity();
+            if (isForUpdate) editEntity();  
             else addEntity();       
         }
+        //добавление новой записи
         private void addEntity()
         {
             Entity entity = new Entity(Convert.ToString(bList.Count), surnameBox.Text, nameBox.Text, lastNameBox.Text, ageBox.Text, departmentBox.Text, arrivalBox.Text, visaBox.Text);
@@ -72,8 +71,9 @@ namespace ExamApp.gui.images
             dataRepository.addEntity(entity);
             clearBoxes();
         }
-            private void editEntity()
-            {
+        //редактирование уже существующей
+        private void editEntity()   
+        {
             int i = 0;
             foreach (Entity entity in bList)
             {
@@ -95,19 +95,21 @@ namespace ExamApp.gui.images
             }
 
         }
-
+        //слушатель кнопки удалить
         private void deleteButtonListener(object sender, EventArgs e)
         {
             if (isForUpdate) deleteEntity();
             else clearBoxes();
         }
+        //удаление записи
         private void deleteEntity()
         {
-            bList.RemoveAt(Convert.ToInt32(entityID));
+            bList.RemoveAt(Convert.ToInt32(getEntityIndex(entityID)));
             dataRepository.removeEntity(bList);
             clearBoxes();
             this.Close();
         } 
+        //отчистка ячеек
         private void clearBoxes()
         {
             surnameBox.Clear();

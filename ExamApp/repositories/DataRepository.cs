@@ -14,7 +14,6 @@ namespace ExamApp
         void addEntity(Entity entity);
         void editEntity(BindingList<Entity> bList);
         void removeEntity(BindingList<Entity> bList);
-        String showAllData();
         BindingList<Entity> getBindingList();
        
     }

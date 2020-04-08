@@ -67,10 +67,6 @@ namespace ExamApp.repositories
             fileStream.Close();
             return bL;
         }
-        public String showAllData()
-        {
-            throw new NotImplementedException();
-        }
 
         
     }

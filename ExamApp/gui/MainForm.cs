@@ -26,6 +26,7 @@ namespace ExamApp
             dataGridView1.ReadOnly = false;
             setDGVHeaders();     
         }
+        //установка заголовков DGV
         private void setDGVHeaders()
         {
             dataGridView1.Columns[0].Visible = false;
@@ -37,6 +38,7 @@ namespace ExamApp
             dataGridView1.Columns[6].HeaderText = "Дата прибытья";
             dataGridView1.Columns[7].HeaderText = "Наличие визы";
         }
+        //соединение с БД
         private void autoConnectToDB()
         {
             dataRepository.connectToDatabase();
@@ -45,6 +47,7 @@ namespace ExamApp
             
             
         }
+        //слушатель для DGV
         private void DataGridView1_CellMouseDoubleClick1(object sender, DataGridViewCellMouseEventArgs e)
         {
             String ID = (dataGridView1.Rows[e.RowIndex].Cells[0].Value).ToString();
@@ -52,20 +55,22 @@ namespace ExamApp
             formForInteracting.Show();
             formForInteracting.FormClosed += formClosedListener;
         }
-
+        //слушатель для сброса фильтра при закрытии формы
         private void formClosedListener(object sender, FormClosedEventArgs e)
         {
             this.textBoxSearch.Clear();
         }
-
+        //слушатель кнопки "Сброс"
         private void resetButtonListener(object sender, EventArgs e)
         {
             this.textBoxSearch.Clear();
         }
+        //слушатель для фильтра
         private void textBoxSearchListener(object sender, EventArgs e)
         {
             filterDGV(textBoxSearch.Text.Trim());
         }
+        // динамическая фильтрация DGV
         private void filterDGV (String str)
         {
             BindingList<Entity> newBList = new BindingList<Entity>();
@@ -76,7 +81,7 @@ namespace ExamApp
             dataGridView1.DataSource = newBList;
             dataGridView1.Update();
         }
-
+        //слушатель кнопки "Добавить"
         private void createEntity(object sender, EventArgs e)
         {
             new FormForInteracting(bList,dataRepository).Show();
