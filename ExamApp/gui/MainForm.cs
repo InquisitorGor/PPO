@@ -23,34 +23,34 @@ namespace ExamApp
             InitializeComponent();
             this.dataRepository = dataRepository;
             autoConnectToDB();
-            dataGridView1.ReadOnly = false;
+            dataGridView.ReadOnly = false;
             setDGVHeaders();     
         }
         //установка заголовков DGV
         private void setDGVHeaders()
         {
-            dataGridView1.Columns[0].Visible = false;
-            dataGridView1.Columns[1].HeaderText = "Фамилия";
-            dataGridView1.Columns[2].HeaderText = "Имя";
-            dataGridView1.Columns[3].HeaderText = "Отчество";
-            dataGridView1.Columns[4].HeaderText = "Возраст";
-            dataGridView1.Columns[5].HeaderText = "Дата отбытия";
-            dataGridView1.Columns[6].HeaderText = "Дата прибытья";
-            dataGridView1.Columns[7].HeaderText = "Наличие визы";
+            dataGridView.Columns[0].Visible = false;
+            dataGridView.Columns[1].HeaderText = "Фамилия";
+            dataGridView.Columns[2].HeaderText = "Имя";
+            dataGridView.Columns[3].HeaderText = "Отчество";
+            dataGridView.Columns[4].HeaderText = "Возраст";
+            dataGridView.Columns[5].HeaderText = "Дата отбытия";
+            dataGridView.Columns[6].HeaderText = "Дата прибытья";
+            dataGridView.Columns[7].HeaderText = "Наличие визы";
         }
         //соединение с БД
         private void autoConnectToDB()
         {
             dataRepository.connectToDatabase();
             this.bList = dataRepository.getBindingList();
-            dataGridView1.DataSource = bList;
+            dataGridView.DataSource = bList;
             
             
         }
         //слушатель для DGV
-        private void DataGridView1_CellMouseDoubleClick1(object sender, DataGridViewCellMouseEventArgs e)
+        private void DataGridViewCellMouseDoubleClickListener(object sender, DataGridViewCellMouseEventArgs e)
         {
-            String ID = (dataGridView1.Rows[e.RowIndex].Cells[0].Value).ToString();
+            String ID = (dataGridView.Rows[e.RowIndex].Cells[0].Value).ToString();
             FormForInteracting formForInteracting = new FormForInteracting(bList, dataRepository, Convert.ToInt32(ID));
             formForInteracting.Show();
             formForInteracting.FormClosed += formClosedListener;
@@ -78,15 +78,15 @@ namespace ExamApp
             {
                 if (en.SecondName.Contains(str)) newBList.Add(en);
             }
-            dataGridView1.DataSource = newBList;
-            dataGridView1.Update();
+            dataGridView.DataSource = newBList;
+            dataGridView.Update();
         }
         //слушатель кнопки "Добавить"
         private void createEntity(object sender, EventArgs e)
         {
             new FormForInteracting(bList,dataRepository).Show();
-            dataGridView1.Update();
-            dataGridView1.Refresh();
+            dataGridView.Update();
+            dataGridView.Refresh();
         }
     }
 }
