@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ExamApp.database.Entity">
+    <Position X="1" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACBEgAAARAQAAAAEAAAAAQEAAAQAAACEAACAAAAgg=</HashCode>
+      <FileName>database\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExamApp.repositories.DataRepositoryImpl">
+    <Position X="2.75" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABACCAAAAAAAAAAAAAQAAAAAQgAgAAAAEAAACAAAA=</HashCode>
+      <FileName>repositories\DataRepositoryImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ExamApp.MainForm">
+    <Position X="5" Y="0.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAKAAiEAgCACAQAAGACAAAAQACAABCCAAAAI=</HashCode>
+      <FileName>gui\MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExamApp.gui.images.FormForInteracting">
+    <Position X="8.75" Y="0.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>gwAEABAQBCAAhIAAAAjBAAACACQIgABQACAAiCCCAAM=</HashCode>
+      <FileName>gui\FormForInteracting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ExamApp.DataRepository">
+    <Position X="2.75" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABACAAAAAAAAAAAAAAAAAAAAQAAAAAAAEAAACAAAA=</HashCode>
+      <FileName>repositories\DataRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

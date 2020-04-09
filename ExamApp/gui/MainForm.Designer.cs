@@ -96,7 +96,7 @@
             this.addEntityButton.TabIndex = 22;
             this.addEntityButton.Text = "Добавить";
             this.addEntityButton.UseVisualStyleBackColor = true;
-            this.addEntityButton.Click += new System.EventHandler(this.createEntity);
+            this.addEntityButton.Click += new System.EventHandler(this.createEntityListener);
             // 
             // MainForm
             // 
