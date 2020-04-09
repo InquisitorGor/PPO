@@ -26,7 +26,7 @@ namespace ExamApp.database
             this.Arrival = arrival;
             this.Visa = visa;
         }
-        //конструктор для создании записи из файла
+        //конструктор для создания записи из файла
         public Entity(String[] str)
         {
             this.Id = str[0];
