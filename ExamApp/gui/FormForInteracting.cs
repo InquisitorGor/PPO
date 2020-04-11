@@ -66,7 +66,7 @@ namespace ExamApp.gui.images
         //добавление новой записи
         private void addEntity()
         {
-            Entity entity = new Entity(Convert.ToString(bList.Count), 
+            Entity entity = new Entity(Convert.ToString(bList.Count + 1), 
                 surnameBox.Text, nameBox.Text, lastNameBox.Text, 
                 ageBox.Text, departmentBox.Text, arrivalBox.Text, visaBox.Text);
             bList.Add(entity);
