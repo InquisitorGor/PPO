@@ -12,8 +12,6 @@ namespace ExamApp.database
         private String department;
         private String arrival;
         private String visa;
-
-        
         
         public Entity(string id, string secondName, string firstName, string lastName, string age, string department, string arrival, string visa)
         {

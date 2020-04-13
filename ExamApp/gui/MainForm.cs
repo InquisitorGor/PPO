@@ -16,7 +16,7 @@ namespace ExamApp
             InitializeComponent();
             this.dataRepository = dataRepository;
             autoConnectToDB();
-            dataGridView.ReadOnly = false;
+            dataGridView.ReadOnly = true;
             setDGVHeaders();     
         }
         //установка заголовков DGV
