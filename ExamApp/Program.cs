@@ -18,6 +18,7 @@ namespace ExamApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Application.Run(new MainForm(new DataRepositoryImpl()));
         }
     }
