@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище examDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="clients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="birthday" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="countries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="country" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="international_passports">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="number" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="date_of_issue" Type="date" Nullable="false" />
+          <Property Name="expirition_date" Type="date" Nullable="false" />
+          <Property Name="client_id" Type="int" />
+          <Property Name="country_id" Type="int" />
+        </EntityType>
+        <EntityType Name="visa_rates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="validaty" Type="int" Nullable="false" />
+          <Property Name="visa_type_id" Type="int" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="payment" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="visa_types">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="visas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="number" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="date_of_issue" Type="date" Nullable="false" />
+          <Property Name="expirition_date" Type="date" Nullable="false" />
+          <Property Name="client_id" Type="int" />
+          <Property Name="visa_rate_id" Type="int" />
+        </EntityType>
+        <Association Name="FK__internati__clien__11DF9047">
+          <End Role="clients" Type="Self.clients" Multiplicity="0..1" />
+          <End Role="international_passports" Type="Self.international_passports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="international_passports">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__internati__count__12D3B480">
+          <End Role="countries" Type="Self.countries" Multiplicity="0..1" />
+          <End Role="international_passports" Type="Self.international_passports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="international_passports">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visa_rate__count__0D1ADB2A">
+          <End Role="countries" Type="Self.countries" Multiplicity="0..1" />
+          <End Role="visa_rates" Type="Self.visa_rates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visa_rates">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visa_rate__visa___0C26B6F1">
+          <End Role="visa_types" Type="Self.visa_types" Multiplicity="0..1" />
+          <End Role="visa_rates" Type="Self.visa_rates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="visa_types">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visa_rates">
+              <PropertyRef Name="visa_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visas__client_id__15B0212B">
+          <End Role="clients" Type="Self.clients" Multiplicity="0..1" />
+          <End Role="visas" Type="Self.visas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visas">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visas__visa_rate__16A44564">
+          <End Role="visa_rates" Type="Self.visa_rates" Multiplicity="0..1" />
+          <End Role="visas" Type="Self.visas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="visa_rates">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visas">
+              <PropertyRef Name="visa_rate_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="full_info_about_client_documents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="client_id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище examDBModelContainer">
+          <EntitySet Name="clients" EntityType="Self.clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countries" EntityType="Self.countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="international_passports" EntityType="Self.international_passports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="visa_rates" EntityType="Self.visa_rates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="visa_types" EntityType="Self.visa_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="visas" EntityType="Self.visas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__internati__clien__11DF9047" Association="Self.FK__internati__clien__11DF9047">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="international_passports" EntitySet="international_passports" />
+          </AssociationSet>
+          <AssociationSet Name="FK__internati__count__12D3B480" Association="Self.FK__internati__count__12D3B480">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="international_passports" EntitySet="international_passports" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visa_rate__count__0D1ADB2A" Association="Self.FK__visa_rate__count__0D1ADB2A">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="visa_rates" EntitySet="visa_rates" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visa_rate__visa___0C26B6F1" Association="Self.FK__visa_rate__visa___0C26B6F1">
+            <End Role="visa_types" EntitySet="visa_types" />
+            <End Role="visa_rates" EntitySet="visa_rates" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visas__client_id__15B0212B" Association="Self.FK__visas__client_id__15B0212B">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="visas" EntitySet="visas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visas__visa_rate__16A44564" Association="Self.FK__visas__visa_rate__16A44564">
+            <End Role="visa_rates" EntitySet="visa_rates" />
+            <End Role="visas" EntitySet="visas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="examDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="international_passports" Relationship="Self.FK__internati__clien__11DF9047" FromRole="clients" ToRole="international_passports" />
+          <NavigationProperty Name="visas" Relationship="Self.FK__visas__client_id__15B0212B" FromRole="clients" ToRole="visas" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="country1" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="international_passports" Relationship="Self.FK__internati__count__12D3B480" FromRole="countries" ToRole="international_passports" />
+          <NavigationProperty Name="visa_rates" Relationship="Self.FK__visa_rate__count__0D1ADB2A" FromRole="countries" ToRole="visa_rates" />
+        </EntityType>
+        <EntityType Name="international_passports">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date_of_issue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="expirition_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="client_id" Type="Int32" />
+          <Property Name="country_id" Type="Int32" />
+          <NavigationProperty Name="client" Relationship="Self.FK__internati__clien__11DF9047" FromRole="international_passports" ToRole="clients" />
+          <NavigationProperty Name="country" Relationship="Self.FK__internati__count__12D3B480" FromRole="international_passports" ToRole="countries" />
+        </EntityType>
+        <EntityType Name="visa_rates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="validaty" Type="Int32" Nullable="false" />
+          <Property Name="visa_type_id" Type="Int32" />
+          <Property Name="country_id" Type="Int32" />
+          <Property Name="payment" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.FK__visa_rate__count__0D1ADB2A" FromRole="visa_rates" ToRole="countries" />
+          <NavigationProperty Name="visa_types" Relationship="Self.FK__visa_rate__visa___0C26B6F1" FromRole="visa_rates" ToRole="visa_types" />
+          <NavigationProperty Name="visas" Relationship="Self.FK__visas__visa_rate__16A44564" FromRole="visa_rates" ToRole="visas" />
+        </EntityType>
+        <EntityType Name="visa_types">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="visa_rates" Relationship="Self.FK__visa_rate__visa___0C26B6F1" FromRole="visa_types" ToRole="visa_rates" />
+        </EntityType>
+        <EntityType Name="visa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date_of_issue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="expirition_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="client_id" Type="Int32" />
+          <Property Name="visa_rate_id" Type="Int32" />
+          <NavigationProperty Name="client" Relationship="Self.FK__visas__client_id__15B0212B" FromRole="visas" ToRole="clients" />
+          <NavigationProperty Name="visa_rates" Relationship="Self.FK__visas__visa_rate__16A44564" FromRole="visas" ToRole="visa_rates" />
+        </EntityType>
+        <Association Name="FK__internati__clien__11DF9047">
+          <End Role="clients" Type="Self.client" Multiplicity="0..1" />
+          <End Role="international_passports" Type="Self.international_passports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="international_passports">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visas__client_id__15B0212B">
+          <End Role="clients" Type="Self.client" Multiplicity="0..1" />
+          <End Role="visas" Type="Self.visa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visas">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__internati__count__12D3B480">
+          <End Role="countries" Type="Self.country" Multiplicity="0..1" />
+          <End Role="international_passports" Type="Self.international_passports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="international_passports">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visa_rate__count__0D1ADB2A">
+          <End Role="countries" Type="Self.country" Multiplicity="0..1" />
+          <End Role="visa_rates" Type="Self.visa_rates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visa_rates">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visa_rate__visa___0C26B6F1">
+          <End Role="visa_types" Type="Self.visa_types" Multiplicity="0..1" />
+          <End Role="visa_rates" Type="Self.visa_rates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="visa_types">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visa_rates">
+              <PropertyRef Name="visa_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__visas__visa_rate__16A44564">
+          <End Role="visa_rates" Type="Self.visa_rates" Multiplicity="0..1" />
+          <End Role="visas" Type="Self.visa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="visa_rates">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visas">
+              <PropertyRef Name="visa_rate_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EgorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="clients" EntityType="Self.client" />
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="international_passports" EntityType="Self.international_passports" />
+          <EntitySet Name="visa_rates" EntityType="Self.visa_rates" />
+          <EntitySet Name="visa_types" EntityType="Self.visa_types" />
+          <EntitySet Name="visas" EntityType="Self.visa" />
+          <AssociationSet Name="FK__internati__clien__11DF9047" Association="Self.FK__internati__clien__11DF9047">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="international_passports" EntitySet="international_passports" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visas__client_id__15B0212B" Association="Self.FK__visas__client_id__15B0212B">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="visas" EntitySet="visas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__internati__count__12D3B480" Association="Self.FK__internati__count__12D3B480">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="international_passports" EntitySet="international_passports" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visa_rate__count__0D1ADB2A" Association="Self.FK__visa_rate__count__0D1ADB2A">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="visa_rates" EntitySet="visa_rates" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visa_rate__visa___0C26B6F1" Association="Self.FK__visa_rate__visa___0C26B6F1">
+            <End Role="visa_types" EntitySet="visa_types" />
+            <End Role="visa_rates" EntitySet="visa_rates" />
+          </AssociationSet>
+          <AssociationSet Name="FK__visas__visa_rate__16A44564" Association="Self.FK__visas__visa_rate__16A44564">
+            <End Role="visa_rates" EntitySet="visa_rates" />
+            <End Role="visas" EntitySet="visas" />
+          </AssociationSet>
+          <FunctionImport Name="full_info_about_client_documents" ReturnType="Collection(examDBModel.full_info_about_client_documents_Result)">
+            <Parameter Name="client_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="full_info_about_client_documents_Result">
+          <Property Type="String" Name="surname" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="last_name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="number" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="date_of_issue" Nullable="false" />
+          <Property Type="DateTime" Name="expirition_date" Nullable="false" />
+          <Property Type="String" Name="number1" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="date_of_issue1" Nullable="false" />
+          <Property Type="DateTime" Name="expirition_date1" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище examDBModelContainer" CdmEntityContainer="EgorEntities">
+          <EntitySetMapping Name="clients">
+            <EntityTypeMapping TypeName="examDBModel.client">
+              <MappingFragment StoreEntitySet="clients">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="examDBModel.country">
+              <MappingFragment StoreEntitySet="countries">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="country1" ColumnName="country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="international_passports">
+            <EntityTypeMapping TypeName="examDBModel.international_passports">
+              <MappingFragment StoreEntitySet="international_passports">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="date_of_issue" ColumnName="date_of_issue" />
+                <ScalarProperty Name="expirition_date" ColumnName="expirition_date" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="visa_rates">
+            <EntityTypeMapping TypeName="examDBModel.visa_rates">
+              <MappingFragment StoreEntitySet="visa_rates">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="validaty" ColumnName="validaty" />
+                <ScalarProperty Name="visa_type_id" ColumnName="visa_type_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="payment" ColumnName="payment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="visa_types">
+            <EntityTypeMapping TypeName="examDBModel.visa_types">
+              <MappingFragment StoreEntitySet="visa_types">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="visas">
+            <EntityTypeMapping TypeName="examDBModel.visa">
+              <MappingFragment StoreEntitySet="visas">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="date_of_issue" ColumnName="date_of_issue" />
+                <ScalarProperty Name="expirition_date" ColumnName="expirition_date" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="visa_rate_id" ColumnName="visa_rate_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="full_info_about_client_documents" FunctionName="Хранилище examDBModel.full_info_about_client_documents">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="examDBModel.full_info_about_client_documents_Result">
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="date_of_issue" ColumnName="date_of_issue" />
+                <ScalarProperty Name="expirition_date" ColumnName="expirition_date" />
+                <ScalarProperty Name="number1" ColumnName="number1" />
+                <ScalarProperty Name="date_of_issue1" ColumnName="date_of_issue1" />
+                <ScalarProperty Name="expirition_date1" ColumnName="expirition_date1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

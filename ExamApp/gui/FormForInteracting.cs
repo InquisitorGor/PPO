@@ -1,4 +1,5 @@
-﻿using ExamApp.database;
+﻿
+using ExamApp.database;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -8,119 +9,94 @@ namespace ExamApp.gui.images
 {
     public partial class FormForInteracting : Form
     {
-        private BindingList<Entity> bList;
-        private DataRepository dataRepository;
-        private Entity entity;
-        private int entityID;
-        private bool isForUpdate = false; // флаг, определяющий поведение кнопки "Сохранить"
+        
+        private client client { get; }
 
-        //конструктор для добавления записи
-        public FormForInteracting(BindingList<Entity> bList, DataRepository dataRepository)
+        private bool isShown { get; }
+
+
+        public FormForInteracting(client client)
         {
             InitializeComponent();
-            this.bList = bList;
-            this.dataRepository = dataRepository;
-        }
-        //конструктор для редактирования записи
-        public FormForInteracting(BindingList<Entity> bList, DataRepository dataRepository, int entityID)
-        {
-            InitializeComponent();
-            this.bList = bList;
-            this.dataRepository = dataRepository;
-            this.entityID = entityID;
-            this.isForUpdate = true;
-            fillBoxes(entityID);
-        }
-        //метод для заполнения ячеек значениями полученной записи
-        private void fillBoxes(int entityID)
-        {
-            entity = bList.ElementAt(getEntityIndex(entityID));
-            surnameBox.Text = entity.SecondName;
-            nameBox.Text = entity.FirstName;
-            lastNameBox.Text = entity.LastName;
-            ageBox.Text = entity.Age;
-            arrivalBox.Text = entity.Arrival;
-            departmentBox.Text = entity.Department;
-            visaBox.Text = entity.Visa;
-        }
-        //метод для получения индекса записи в рамках коллекции
-        private int getEntityIndex(int entityID)
-        {
-            int i = 0;
-            foreach (Entity entity in bList)
-            {
-                if (entity.Id == Convert.ToString(entityID))
-                {
-                    return i;
-                }
-                i++;
-            }
-            return 0;
-        }
-        //слушатель для кнопки сохранить
-        private void saveButtonListener(object sender, EventArgs e)
-        {
-            if (isForUpdate) editEntity();  
-            else addEntity();       
-        }
-        //добавление новой записи
-        private void addEntity()
-        {
-            Entity entity = new Entity(Convert.ToString(bList.Count + 1), 
-                surnameBox.Text, nameBox.Text, lastNameBox.Text, 
-                ageBox.Text, departmentBox.Text, arrivalBox.Text, visaBox.Text);
-            bList.Add(entity);
-            dataRepository.addEntity(entity);
-            clearBoxes();
-        }
-        //редактирование уже существующей
-        private void editEntity()   
-        {
-            int i = 0;
-            foreach (Entity entity in bList)
-            {
-                if (entity.Id == Convert.ToString(entityID))
-                {
-                    entity.SecondName = surnameBox.Text;
-                    entity.FirstName = nameBox.Text;
-                    entity.LastName = lastNameBox.Text;
-                    entity.Age = ageBox.Text;
-                    entity.Arrival = arrivalBox.Text;
-                    entity.Department = departmentBox.Text;
-                    entity.Visa = visaBox.Text;
-                    bList.RemoveAt(i);
-                    bList.Insert(i, entity);
-                    dataRepository.editEntity(bList);
-                    break;
-                }
-                i++;
-            }
+            this.client = client;
+            isShown = false;
+            fillBoxes();
+            setDGVDatasourse();
+            setDGVHeaders();
+            isShown = true;
 
         }
-        //слушатель кнопки удалить
-        private void deleteButtonListener(object sender, EventArgs e)
+        private void setDGVHeaders()
         {
-            if (isForUpdate) deleteEntity();
-            else clearBoxes();
+            visaDGV.Columns[0].Visible = false;
+            visaDGV.Columns[1].HeaderText = "Номер визы";
+            visaDGV.Columns[2].HeaderText = "Дата получения";
+            visaDGV.Columns[3].HeaderText = "Дата окончания";
+            visaDGV.Columns[4].Visible = false;
+            visaDGV.Columns[5].Visible = false;
+            visaDGV.Columns[6].Visible = false;
+            visaDGV.Columns[7].Visible = false;
+
+            iPDGV.Columns[0].Visible = false;
+            iPDGV.Columns[1].HeaderText = "Номер загранпаспорта";
+            iPDGV.Columns[2].HeaderText = "Дата получения";
+            iPDGV.Columns[3].HeaderText = "Дата окончания";
+            iPDGV.Columns[4].Visible = false;
+            iPDGV.Columns[5].Visible = false;
+            iPDGV.Columns[6].Visible = false;
+            iPDGV.Columns[7].Visible = false;
         }
-        //удаление записи
-        private void deleteEntity()
+
+        private void fillBoxes()
         {
-            bList.RemoveAt(Convert.ToInt32(getEntityIndex(entityID)));
-            dataRepository.removeEntity(bList);
-            clearBoxes();
-            this.Close();
-        } 
-        //отчистка ячеек
-        private void clearBoxes()
+            surnameBox.Text = client.surname;
+            nameBox.Text = client.name;
+            lastNameBox.Text = client.last_name;
+            birthday.Value = client.birthday;
+
+            
+        }
+        
+        private void setDGVDatasourse()
         {
-            surnameBox.Clear();
-            nameBox.Clear();
-            lastNameBox.Clear();
-            ageBox.Clear();
-            departmentBox.Clear();
-            arrivalBox.Clear();
-            visaBox.Clear();
+            visaDGV.DataSource = client.visas.ToList();
+            iPDGV.DataSource = client.international_passports.ToList();
+        }
+
+        private void visaDGV_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0) { return; };
+            visa v = visaDGV.Rows[e.RowIndex].DataBoundItem as visa;
+            VisaForm visaForm = new VisaForm(v);
+            visaForm.ShowDialog();
+            setDGVDatasourse();
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            save();
+        }
+
+        private void save()
+        {
+            if (client.id <= 0)
+            {
+                DBConnect.Entities.clients.Add(client);
+            }
+            else
+            {
+                refreshClient();
+                DBConnect.Entities.SaveChanges();
+                setDGVDatasourse();
+                MessageBox.Show("Данные сохранены");
+            }
+        }
+        private void refreshClient()
+        {
+            client.surname = surnameBox.Text;
+            client.name = nameBox.Text;
+            client.last_name = lastNameBox.Text;
+            client.birthday = birthday.Value;
         }
     }
 }

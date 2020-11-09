@@ -35,23 +35,24 @@
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
             this.nameBox = new System.Windows.Forms.TextBox();
             this.ageTextBox = new System.Windows.Forms.TextBox();
-            this.ageBox = new System.Windows.Forms.TextBox();
-            this.departmentTextBox = new System.Windows.Forms.TextBox();
-            this.departmentBox = new System.Windows.Forms.TextBox();
-            this.arrivalTextBox = new System.Windows.Forms.TextBox();
-            this.arrivalBox = new System.Windows.Forms.TextBox();
-            this.visaTextBox = new System.Windows.Forms.TextBox();
-            this.visaBox = new System.Windows.Forms.TextBox();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
+            this.birthday = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.visaDGV = new System.Windows.Forms.DataGridView();
+            this.iPDGV = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visaDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iPDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // surnameTextBox
             // 
             this.surnameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.surnameTextBox.Location = new System.Drawing.Point(12, 18);
+            this.surnameTextBox.Location = new System.Drawing.Point(9, 62);
             this.surnameTextBox.Name = "surnameTextBox";
             this.surnameTextBox.ReadOnly = true;
             this.surnameTextBox.Size = new System.Drawing.Size(127, 31);
@@ -61,171 +62,161 @@
             // surnameBox
             // 
             this.surnameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.surnameBox.Location = new System.Drawing.Point(145, 20);
+            this.surnameBox.Location = new System.Drawing.Point(142, 64);
             this.surnameBox.Multiline = true;
             this.surnameBox.Name = "surnameBox";
-            this.surnameBox.Size = new System.Drawing.Size(166, 29);
+            this.surnameBox.Size = new System.Drawing.Size(229, 29);
             this.surnameBox.TabIndex = 10;
             // 
             // nameTextBox
             // 
             this.nameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameTextBox.Location = new System.Drawing.Point(12, 55);
+            this.nameTextBox.Location = new System.Drawing.Point(9, 99);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.ReadOnly = true;
-            this.nameTextBox.Size = new System.Drawing.Size(58, 31);
+            this.nameTextBox.Size = new System.Drawing.Size(127, 31);
             this.nameTextBox.TabIndex = 11;
             this.nameTextBox.Text = "Имя";
             // 
             // lastNameBox
             // 
             this.lastNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lastNameBox.Location = new System.Drawing.Point(128, 92);
+            this.lastNameBox.Location = new System.Drawing.Point(142, 136);
             this.lastNameBox.Name = "lastNameBox";
-            this.lastNameBox.Size = new System.Drawing.Size(183, 31);
+            this.lastNameBox.Size = new System.Drawing.Size(229, 31);
             this.lastNameBox.TabIndex = 12;
             // 
             // lastNameTextBox
             // 
             this.lastNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lastNameTextBox.Location = new System.Drawing.Point(12, 92);
+            this.lastNameTextBox.Location = new System.Drawing.Point(9, 136);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.ReadOnly = true;
-            this.lastNameTextBox.Size = new System.Drawing.Size(109, 31);
+            this.lastNameTextBox.Size = new System.Drawing.Size(127, 31);
             this.lastNameTextBox.TabIndex = 13;
             this.lastNameTextBox.Text = "Отчество";
             // 
             // nameBox
             // 
             this.nameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameBox.Location = new System.Drawing.Point(76, 55);
+            this.nameBox.Location = new System.Drawing.Point(142, 99);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(132, 31);
+            this.nameBox.Size = new System.Drawing.Size(229, 31);
             this.nameBox.TabIndex = 14;
             // 
             // ageTextBox
             // 
             this.ageTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ageTextBox.Location = new System.Drawing.Point(12, 129);
+            this.ageTextBox.Location = new System.Drawing.Point(9, 182);
+            this.ageTextBox.Multiline = true;
             this.ageTextBox.Name = "ageTextBox";
             this.ageTextBox.ReadOnly = true;
-            this.ageTextBox.Size = new System.Drawing.Size(109, 31);
+            this.ageTextBox.Size = new System.Drawing.Size(127, 59);
             this.ageTextBox.TabIndex = 16;
-            this.ageTextBox.Text = "Возраст";
-            // 
-            // ageBox
-            // 
-            this.ageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ageBox.Location = new System.Drawing.Point(128, 129);
-            this.ageBox.Name = "ageBox";
-            this.ageBox.Size = new System.Drawing.Size(183, 31);
-            this.ageBox.TabIndex = 15;
-            // 
-            // departmentTextBox
-            // 
-            this.departmentTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.departmentTextBox.Location = new System.Drawing.Point(12, 166);
-            this.departmentTextBox.Multiline = true;
-            this.departmentTextBox.Name = "departmentTextBox";
-            this.departmentTextBox.ReadOnly = true;
-            this.departmentTextBox.Size = new System.Drawing.Size(109, 55);
-            this.departmentTextBox.TabIndex = 18;
-            this.departmentTextBox.Text = "Время отбытия";
-            // 
-            // departmentBox
-            // 
-            this.departmentBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.departmentBox.Location = new System.Drawing.Point(127, 179);
-            this.departmentBox.Name = "departmentBox";
-            this.departmentBox.Size = new System.Drawing.Size(183, 31);
-            this.departmentBox.TabIndex = 17;
-            // 
-            // arrivalTextBox
-            // 
-            this.arrivalTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.arrivalTextBox.Location = new System.Drawing.Point(12, 227);
-            this.arrivalTextBox.Multiline = true;
-            this.arrivalTextBox.Name = "arrivalTextBox";
-            this.arrivalTextBox.ReadOnly = true;
-            this.arrivalTextBox.Size = new System.Drawing.Size(109, 55);
-            this.arrivalTextBox.TabIndex = 19;
-            this.arrivalTextBox.Text = "Время прибытия";
-            // 
-            // arrivalBox
-            // 
-            this.arrivalBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.arrivalBox.Location = new System.Drawing.Point(128, 237);
-            this.arrivalBox.Name = "arrivalBox";
-            this.arrivalBox.Size = new System.Drawing.Size(183, 31);
-            this.arrivalBox.TabIndex = 20;
-            // 
-            // visaTextBox
-            // 
-            this.visaTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.visaTextBox.Location = new System.Drawing.Point(12, 290);
-            this.visaTextBox.Multiline = true;
-            this.visaTextBox.Name = "visaTextBox";
-            this.visaTextBox.ReadOnly = true;
-            this.visaTextBox.Size = new System.Drawing.Size(109, 56);
-            this.visaTextBox.TabIndex = 22;
-            this.visaTextBox.Text = "Наличие визы";
-            // 
-            // visaBox
-            // 
-            this.visaBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.visaBox.Location = new System.Drawing.Point(127, 303);
-            this.visaBox.Name = "visaBox";
-            this.visaBox.Size = new System.Drawing.Size(95, 31);
-            this.visaBox.TabIndex = 21;
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BackgroundImage = global::ExamApp.Properties.Resources.logo;
-            this.pictureBox.Location = new System.Drawing.Point(418, 20);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(223, 203);
-            this.pictureBox.TabIndex = 23;
-            this.pictureBox.TabStop = false;
+            this.ageTextBox.Text = "Дата рождения";
             // 
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.saveButton.Location = new System.Drawing.Point(380, 274);
+            this.saveButton.Location = new System.Drawing.Point(451, 572);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(131, 60);
             this.saveButton.TabIndex = 24;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButtonListener);
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // deleteButton
             // 
             this.deleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deleteButton.Location = new System.Drawing.Point(517, 274);
+            this.deleteButton.Location = new System.Drawing.Point(588, 572);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(131, 60);
             this.deleteButton.TabIndex = 25;
             this.deleteButton.Text = "Удалить";
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButtonListener);
+            // 
+            // birthday
+            // 
+            this.birthday.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.birthday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.birthday.Location = new System.Drawing.Point(142, 182);
+            this.birthday.Name = "birthday";
+            this.birthday.Size = new System.Drawing.Size(229, 29);
+            this.birthday.TabIndex = 26;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(3, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 33);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Клиент";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(3, 262);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 33);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Визы";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(367, 262);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(232, 33);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "Загранпаспорта";
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackgroundImage = global::ExamApp.Properties.Resources.logo;
+            this.pictureBox.Location = new System.Drawing.Point(495, 23);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(224, 208);
+            this.pictureBox.TabIndex = 23;
+            this.pictureBox.TabStop = false;
+            // 
+            // visaDGV
+            // 
+            this.visaDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.visaDGV.Location = new System.Drawing.Point(9, 308);
+            this.visaDGV.Name = "visaDGV";
+            this.visaDGV.Size = new System.Drawing.Size(343, 226);
+            this.visaDGV.TabIndex = 38;
+            this.visaDGV.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.visaDGV_CellMouseDoubleClick);
+            // 
+            // iPDGV
+            // 
+            this.iPDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.iPDGV.Location = new System.Drawing.Point(373, 308);
+            this.iPDGV.Name = "iPDGV";
+            this.iPDGV.Size = new System.Drawing.Size(346, 226);
+            this.iPDGV.TabIndex = 39;
             // 
             // FormForInteracting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(653, 358);
+            this.ClientSize = new System.Drawing.Size(729, 644);
+            this.Controls.Add(this.iPDGV);
+            this.Controls.Add(this.visaDGV);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.birthday);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.pictureBox);
-            this.Controls.Add(this.visaTextBox);
-            this.Controls.Add(this.visaBox);
-            this.Controls.Add(this.arrivalBox);
-            this.Controls.Add(this.arrivalTextBox);
-            this.Controls.Add(this.departmentTextBox);
-            this.Controls.Add(this.departmentBox);
             this.Controls.Add(this.ageTextBox);
-            this.Controls.Add(this.ageBox);
             this.Controls.Add(this.lastNameTextBox);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.nameTextBox);
@@ -235,6 +226,8 @@
             this.Name = "FormForInteracting";
             this.Text = "Информация";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visaDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iPDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,15 +241,14 @@
         private System.Windows.Forms.TextBox lastNameTextBox;
         private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.TextBox ageTextBox;
-        private System.Windows.Forms.TextBox ageBox;
-        private System.Windows.Forms.TextBox departmentTextBox;
-        private System.Windows.Forms.TextBox departmentBox;
-        private System.Windows.Forms.TextBox arrivalTextBox;
-        private System.Windows.Forms.TextBox arrivalBox;
-        private System.Windows.Forms.TextBox visaTextBox;
-        private System.Windows.Forms.TextBox visaBox;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.DateTimePicker birthday;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView visaDGV;
+        private System.Windows.Forms.DataGridView iPDGV;
     }
 }

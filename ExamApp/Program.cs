@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ExamApp.repositories;
 
 namespace ExamApp
 {
@@ -19,7 +18,7 @@ namespace ExamApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new MainForm(new DataRepositoryImpl()));
+            Application.Run(new MainForm());
         }
     }
 }

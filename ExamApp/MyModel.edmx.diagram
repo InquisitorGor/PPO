@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e29fd827d2de41c9aa9e3766717442e0" Name="Diagram1">
+        <EntityTypeShape EntityType="examDBModel.client" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="examDBModel.country" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="examDBModel.international_passports" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="examDBModel.visa_rates" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="examDBModel.visa_types" Width="1.5" PointX="6.625" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="examDBModel.visa" Width="1.5" PointX="8.25" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="examDBModel.FK__internati__clien__11DF9047" ManuallyRouted="false" />
+        <AssociationConnector Association="examDBModel.FK__visas__client_id__15B0212B" ManuallyRouted="false" />
+        <AssociationConnector Association="examDBModel.FK__internati__count__12D3B480" ManuallyRouted="false" />
+        <AssociationConnector Association="examDBModel.FK__visa_rate__count__0D1ADB2A" ManuallyRouted="false" />
+        <AssociationConnector Association="examDBModel.FK__visa_rate__visa___0C26B6F1" ManuallyRouted="false" />
+        <AssociationConnector Association="examDBModel.FK__visas__visa_rate__16A44564" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

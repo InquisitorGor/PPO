@@ -41,12 +41,13 @@
             // dataGridView
             // 
             this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(0, 183);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(799, 229);
+            this.dataGridView.Size = new System.Drawing.Size(1455, 229);
             this.dataGridView.TabIndex = 17;
-            this.dataGridView.CellMouseDoubleClick += DataGridViewCellMouseDoubleClickListener;
+            this.dataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseDoubleClick);
             // 
             // searchInfo
             // 
@@ -83,7 +84,7 @@
             this.pictureBox.Image = global::ExamApp.Properties.Resources.background;
             this.pictureBox.Location = new System.Drawing.Point(0, -1);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(799, 145);
+            this.pictureBox.Size = new System.Drawing.Size(1282, 145);
             this.pictureBox.TabIndex = 18;
             this.pictureBox.TabStop = false;
             // 
@@ -102,7 +103,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 451);
+            this.ClientSize = new System.Drawing.Size(1458, 455);
             this.Controls.Add(this.addEntityButton);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.textBoxSearch);
