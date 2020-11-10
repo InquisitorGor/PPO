@@ -44,6 +44,8 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.visaDGV = new System.Windows.Forms.DataGridView();
             this.iPDGV = new System.Windows.Forms.DataGridView();
+            this.addVisa = new System.Windows.Forms.Button();
+            this.addPassport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visaDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iPDGV)).BeginInit();
@@ -118,7 +120,7 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.saveButton.Location = new System.Drawing.Point(451, 572);
+            this.saveButton.Location = new System.Drawing.Point(455, 596);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(131, 60);
             this.saveButton.TabIndex = 24;
@@ -129,12 +131,13 @@
             // deleteButton
             // 
             this.deleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deleteButton.Location = new System.Drawing.Point(588, 572);
+            this.deleteButton.Location = new System.Drawing.Point(592, 596);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(131, 60);
             this.deleteButton.TabIndex = 25;
             this.deleteButton.Text = "Удалить";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // birthday
             // 
@@ -200,13 +203,38 @@
             this.iPDGV.Name = "iPDGV";
             this.iPDGV.Size = new System.Drawing.Size(346, 226);
             this.iPDGV.TabIndex = 39;
+            this.iPDGV.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.iPDGV_CellMouseDoubleClick);
+            // 
+            // addVisa
+            // 
+            this.addVisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addVisa.Location = new System.Drawing.Point(9, 540);
+            this.addVisa.Name = "addVisa";
+            this.addVisa.Size = new System.Drawing.Size(127, 41);
+            this.addVisa.TabIndex = 40;
+            this.addVisa.Text = "Добавить";
+            this.addVisa.UseVisualStyleBackColor = true;
+            this.addVisa.Click += new System.EventHandler(this.addVisa_Click);
+            // 
+            // addPassport
+            // 
+            this.addPassport.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addPassport.Location = new System.Drawing.Point(373, 540);
+            this.addPassport.Name = "addPassport";
+            this.addPassport.Size = new System.Drawing.Size(127, 41);
+            this.addPassport.TabIndex = 41;
+            this.addPassport.Text = "Добавить";
+            this.addPassport.UseVisualStyleBackColor = true;
+            this.addPassport.Click += new System.EventHandler(this.addPassport_Click);
             // 
             // FormForInteracting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(729, 644);
+            this.ClientSize = new System.Drawing.Size(735, 668);
+            this.Controls.Add(this.addPassport);
+            this.Controls.Add(this.addVisa);
             this.Controls.Add(this.iPDGV);
             this.Controls.Add(this.visaDGV);
             this.Controls.Add(this.label3);
@@ -250,5 +278,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView visaDGV;
         private System.Windows.Forms.DataGridView iPDGV;
+        private System.Windows.Forms.Button addVisa;
+        private System.Windows.Forms.Button addPassport;
     }
 }

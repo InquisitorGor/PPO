@@ -31,7 +31,6 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.searchInfo = new System.Windows.Forms.Label();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
-            this.resetButton = new System.Windows.Forms.Button();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.addEntityButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -68,17 +67,6 @@
             this.textBoxSearch.TabIndex = 20;
             this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearchListener);
             // 
-            // resetButton
-            // 
-            this.resetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.resetButton.Location = new System.Drawing.Point(701, 147);
-            this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(80, 30);
-            this.resetButton.TabIndex = 21;
-            this.resetButton.Text = "Сброс";
-            this.resetButton.UseVisualStyleBackColor = true;
-            this.resetButton.Click += new System.EventHandler(this.resetButtonListener);
-            // 
             // pictureBox
             // 
             this.pictureBox.Image = global::ExamApp.Properties.Resources.background;
@@ -105,7 +93,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1458, 455);
             this.Controls.Add(this.addEntityButton);
-            this.Controls.Add(this.resetButton);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.searchInfo);
             this.Controls.Add(this.pictureBox);
@@ -126,7 +113,6 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Label searchInfo;
         private System.Windows.Forms.TextBox textBoxSearch;
-        private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Button addEntityButton;
     }
 }

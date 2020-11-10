@@ -19,7 +19,7 @@ namespace ExamApp
             dataGridView.ReadOnly = true;
             
             setDGVDatasource();
-           setDGVHeaders();
+            setDGVHeaders();
         }
         //установка заголовков DGV
         private void setDGVHeaders()
@@ -34,19 +34,8 @@ namespace ExamApp
         }
 
         private void setDGVDatasource()
-        {
-            //var data = (from s in DBConnect.Entities.clients
-            //            join v in DBConnect.Entities.visas on s.id equals v.client_id
-            //            join ip in DBConnect.Entities.international_passports on s.id equals ip.client_id
-            //            select new
-            //            {
-            //                s.id, s.name, s.surname, s.last_name,
-            //                visa_number = v.number, visa_date_of_issue = v.date_of_issue, visa_expiration_date = v.expirition_date,
-            //                ip_number = ip.number, ip_date_of_issue = ip.date_of_issue, ip_expiration_date = ip.expirition_date, ip.country.country1
-            //            }
-            //            ).ToList();
+        { 
             this.dataGridView.DataSource = DBConnect.Entities.clients.ToList();
-
         }
 
         //слушатель для DGV
@@ -59,16 +48,6 @@ namespace ExamApp
             setDGVDatasource();
 
         }
-        //слушатель для сброса фильтра при закрытии формы
-        private void formClosedListener(object sender, FormClosedEventArgs e)
-        {
-            this.textBoxSearch.Clear();
-        }
-        //слушатель кнопки "Сброс"
-        private void resetButtonListener(object sender, EventArgs e)
-        {
-            this.textBoxSearch.Clear();
-        }
         //слушатель для фильтра
         private void textBoxSearchListener(object sender, EventArgs e)
         {
@@ -77,16 +56,16 @@ namespace ExamApp
         // динамическая фильтрация DGV
         private void filterDGV (String str)
         {
-       
-            //dataGridView.DataSource
+            dataGridView.DataSource = (DBConnect.Entities.clients.ToList()).Where(x => x.surname.StartsWith(str)).ToList();
             dataGridView.Update();
         }
         //слушатель кнопки "Добавить"
         private void createEntityListener(object sender, EventArgs e)
         {
-            //new FormForInteracting().Show();
-            dataGridView.Update();
-            dataGridView.Refresh();
+            client c = new client { birthday = DateTime.Now };
+            FormForInteracting form = new FormForInteracting(c);
+            form.ShowDialog();
+            setDGVDatasource();
         }
 
         

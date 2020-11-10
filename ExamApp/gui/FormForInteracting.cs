@@ -2,6 +2,7 @@
 using ExamApp.database;
 using System;
 using System.ComponentModel;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,18 +13,13 @@ namespace ExamApp.gui.images
         
         private client client { get; }
 
-        private bool isShown { get; }
-
-
         public FormForInteracting(client client)
         {
             InitializeComponent();
             this.client = client;
-            isShown = false;
             fillBoxes();
             setDGVDatasourse();
             setDGVHeaders();
-            isShown = true;
 
         }
         private void setDGVHeaders()
@@ -54,7 +50,7 @@ namespace ExamApp.gui.images
             lastNameBox.Text = client.last_name;
             birthday.Value = client.birthday;
 
-            
+  
         }
         
         private void setDGVDatasourse()
@@ -71,6 +67,14 @@ namespace ExamApp.gui.images
             visaForm.ShowDialog();
             setDGVDatasourse();
         }
+        private void iPDGV_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0) { return; };
+            international_passports ip = iPDGV.Rows[e.RowIndex].DataBoundItem as international_passports;
+            InternationalPassportForm passportForm = new InternationalPassportForm(ip);
+            passportForm.ShowDialog();
+            setDGVDatasourse();
+        }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -81,15 +85,33 @@ namespace ExamApp.gui.images
         {
             if (client.id <= 0)
             {
+                refreshClient();
                 DBConnect.Entities.clients.Add(client);
+                MessageBox.Show("Данные добавленны");
             }
             else
             {
                 refreshClient();
-                DBConnect.Entities.SaveChanges();
-                setDGVDatasourse();
-                MessageBox.Show("Данные сохранены");
+                MessageBox.Show("Данные отредактированы");
             }
+            try
+            {
+                DBConnect.Entities.SaveChanges();
+            } catch (DbEntityValidationException ex)
+            {
+                foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                {
+
+                        MessageBox.Show("Object: " + validationError.Entry.Entity.ToString());
+                        MessageBox.Show("");
+
+                        foreach (DbValidationError err in validationError.ValidationErrors)
+                        {
+                        MessageBox.Show(err.ErrorMessage + "");
+                        }
+                }
+            }
+            setDGVDatasourse();
         }
         private void refreshClient()
         {
@@ -97,6 +119,34 @@ namespace ExamApp.gui.images
             client.name = nameBox.Text;
             client.last_name = lastNameBox.Text;
             client.birthday = birthday.Value;
+        }
+
+        private void addVisa_Click(object sender, EventArgs e)
+        {
+            visa v = new visa { date_of_issue = DateTime.Now, expirition_date = DateTime.Now };
+            VisaForm visaForm = new VisaForm(v);
+            visaForm.ShowDialog();
+            client.visas.Add(v);
+            setDGVDatasourse();
+        }
+
+        private void addPassport_Click(object sender, EventArgs e)
+        {
+            international_passports ip = new international_passports { date_of_issue = DateTime.Now, expirition_date = DateTime.Now };
+            InternationalPassportForm passportForm = new InternationalPassportForm(ip);
+            passportForm.ShowDialog();
+            client.international_passports.Add(ip);
+            setDGVDatasourse();
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (client.id > 0)
+            {
+                DBConnect.Entities.clients.Remove(client);
+                DBConnect.Entities.SaveChanges();
+            }
+            this.Close();
         }
     }
 }

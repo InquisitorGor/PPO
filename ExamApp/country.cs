@@ -28,5 +28,10 @@ namespace ExamApp
         public virtual ICollection<international_passports> international_passports { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<visa_rates> visa_rates { get; set; }
+
+        public override string ToString()
+        {
+            return country1;
+        }
     }
 }

@@ -30,5 +30,10 @@ namespace ExamApp
         public virtual visa_types visa_types { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<visa> visas { get; set; }
+
+        public override string ToString()
+        {
+            return "Срок: |" + validaty + "| Тип: |" + visa_types.type + "| Страна: |" + country.country1 + "| Платеж: |" + payment + "|";
+        }
     }
 }

@@ -39,6 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.saveButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@
             this.visaRateBox.FormattingEnabled = true;
             this.visaRateBox.Location = new System.Drawing.Point(151, 256);
             this.visaRateBox.Name = "visaRateBox";
-            this.visaRateBox.Size = new System.Drawing.Size(229, 32);
+            this.visaRateBox.Size = new System.Drawing.Size(637, 32);
             this.visaRateBox.TabIndex = 45;
             // 
             // textBox5
@@ -143,7 +144,7 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.saveButton.Location = new System.Drawing.Point(657, 378);
+            this.saveButton.Location = new System.Drawing.Point(492, 378);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(131, 60);
             this.saveButton.TabIndex = 47;
@@ -151,12 +152,24 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
+            // deleteButton
+            // 
+            this.deleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.deleteButton.Location = new System.Drawing.Point(657, 378);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(131, 60);
+            this.deleteButton.TabIndex = 48;
+            this.deleteButton.Text = "Удалить";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
             // VisaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.visaRateBox);
@@ -189,5 +202,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button deleteButton;
     }
 }

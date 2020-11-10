@@ -1,4 +1,5 @@
 ﻿using System;
+using ExamApp.database;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,8 +15,6 @@ namespace ExamApp.gui
     {
         private visa visa { get; }
 
-        private bool isShown { get; }
-
         public VisaForm(visa visa)
         {
             InitializeComponent();
@@ -27,7 +26,8 @@ namespace ExamApp.gui
             visaNumberBox.Text = visa.number;
             visaIssueBox.Value = visa.date_of_issue;
             visaExpirationBox.Value = visa.expirition_date;
-            visaRateBox.SelectedItem = visa.visa_rates;
+            visaRateBox.DataSource = DBConnect.Entities.visa_rates.ToList();
+            if (visa.id > 0) visaRateBox.Text = visa.visa_rates.ToString();
 
         }
 
@@ -37,6 +37,15 @@ namespace ExamApp.gui
             visa.date_of_issue = visaIssueBox.Value;
             visa.expirition_date = visaExpirationBox.Value;
             visa.visa_rates = visaRateBox.SelectedItem as visa_rates;
+
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            DBConnect.Entities.visas.Remove(visa);
+            visaNumberBox.Clear();
+            visaIssueBox.Value = DateTime.Now;
+            visaExpirationBox.Value = DateTime.Now;
 
         }
     }
