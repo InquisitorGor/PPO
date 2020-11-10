@@ -1,4 +1,5 @@
 ﻿using ExamApp.database;
+using ExamApp.gui;
 using ExamApp.gui.images;
 using System;
 using System.Collections.Generic;
@@ -10,17 +11,22 @@ namespace ExamApp
 {
     public partial class MainForm : Form
     {
-
-        
-
         public MainForm()
         {
             InitializeComponent();
+            setConnection();
             dataGridView.ReadOnly = true;
-            
             setDGVDatasource();
             setDGVHeaders();
+            this.Visible = true;
         }
+
+        private void setConnection()
+        {
+            LoginForm loginForm = new LoginForm();
+            loginForm.ShowDialog();
+        }
+
         //установка заголовков DGV
         private void setDGVHeaders()
         {

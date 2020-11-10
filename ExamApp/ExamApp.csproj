@@ -78,6 +78,12 @@
     <Compile Include="gui\InternationalPassportForm.Designer.cs">
       <DependentUpon>InternationalPassportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="gui\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gui\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="gui\VisaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="gui\InternationalPassportForm.resx">
       <DependentUpon>InternationalPassportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

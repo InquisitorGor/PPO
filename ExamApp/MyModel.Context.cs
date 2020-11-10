@@ -21,7 +21,14 @@ namespace ExamApp
             : base("name=EgorEntities")
         {
         }
-   
+
+        public EgorEntities(String connection)
+            : this()
+        {
+            this.Database.Connection.ConnectionString = connection;
+        }
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
