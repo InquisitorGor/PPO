@@ -1,13 +1,8 @@
 ﻿using ExamApp.database;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ExamApp.gui
@@ -34,7 +29,17 @@ namespace ExamApp.gui
                 UserID = login
             };
             DBConnect.Entities = new EgorEntities(c.ConnectionString);
-            this.Close();
+
+            try
+            {
+                List <visa> testConnection = DBConnect.Entities.visas.ToList();
+                this.Close();
+            } catch (System.Data.Entity.Core.EntityException ex)
+            {
+                MessageBox.Show("Данные невалидные");
+            }
+
+            
         }
     }
 }

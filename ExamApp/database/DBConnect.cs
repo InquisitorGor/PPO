@@ -9,7 +9,5 @@ namespace ExamApp.database
     public static class DBConnect
     {
         public static EgorEntities Entities { get; set; }
-
-        
     }
 }

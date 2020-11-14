@@ -1,12 +1,6 @@
 ﻿using System;
 using ExamApp.database;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ExamApp.gui
@@ -37,6 +31,7 @@ namespace ExamApp.gui
             visa.date_of_issue = visaIssueBox.Value;
             visa.expirition_date = visaExpirationBox.Value;
             visa.visa_rates = visaRateBox.SelectedItem as visa_rates;
+            this.Close();
 
         }
 
@@ -47,6 +42,11 @@ namespace ExamApp.gui
             visaIssueBox.Value = DateTime.Now;
             visaExpirationBox.Value = DateTime.Now;
 
+        }
+
+        private void visaRateBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

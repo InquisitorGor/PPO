@@ -1,12 +1,6 @@
 ﻿using ExamApp.database;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ExamApp.gui
@@ -36,7 +30,8 @@ namespace ExamApp.gui
             passport.number = iPNumber.Text;
             passport.date_of_issue = iPIssueBox.Value;
             passport.expirition_date = iPExpirationBox.Value;
-            passport.country = iPCountryBox.SelectedItem as country; 
+            passport.country = iPCountryBox.SelectedItem as country;
+            this.Close();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)

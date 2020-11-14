@@ -2,8 +2,6 @@
 using ExamApp.gui;
 using ExamApp.gui.images;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,8 +13,8 @@ namespace ExamApp
         {
             InitializeComponent();
             setConnection();
-            dataGridView.ReadOnly = true;
             setDGVDatasource();
+            dataGridView.ReadOnly = true;
             setDGVHeaders();
             this.Visible = true;
         }
@@ -39,13 +37,14 @@ namespace ExamApp
             dataGridView.Columns[6].Visible = false;
         }
 
-        private void setDGVDatasource()
-        { 
-            this.dataGridView.DataSource = DBConnect.Entities.clients.ToList();
+        private void setDGVDatasource() 
+        {
+             this.dataGridView.DataSource = DBConnect.Entities.clients.ToList();
         }
 
         //слушатель для DGV
-        private void dataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dataGridView_CellMouseDoubleClick
+            (object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0) { return; };
             client c = dataGridView.Rows[e.RowIndex].DataBoundItem as client;
@@ -62,7 +61,8 @@ namespace ExamApp
         // динамическая фильтрация DGV
         private void filterDGV (String str)
         {
-            dataGridView.DataSource = (DBConnect.Entities.clients.ToList()).Where(x => x.surname.StartsWith(str)).ToList();
+            dataGridView.DataSource = (DBConnect.Entities.clients.ToList())
+                .Where(x => x.surname.StartsWith(str)).ToList();
             dataGridView.Update();
         }
         //слушатель кнопки "Добавить"

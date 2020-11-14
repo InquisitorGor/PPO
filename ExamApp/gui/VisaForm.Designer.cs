@@ -51,6 +51,7 @@
             this.visaRateBox.Name = "visaRateBox";
             this.visaRateBox.Size = new System.Drawing.Size(637, 32);
             this.visaRateBox.TabIndex = 45;
+            this.visaRateBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.visaRateBox_KeyPress);
             // 
             // textBox5
             // 

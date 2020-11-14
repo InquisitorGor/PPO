@@ -1,7 +1,7 @@
 ﻿
 using ExamApp.database;
 using System;
-using System.ComponentModel;
+using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Windows.Forms;
@@ -143,6 +143,19 @@ namespace ExamApp.gui.images
         {
             if (client.id > 0)
             {
+                List<visa> visaList = DBConnect.Entities.visas.ToList();
+                visaList.ForEach(delegate (visa v) {
+                    if (v.client_id == client.id) 
+                        DBConnect.Entities.visas.Remove(v);
+                });
+
+                List<international_passports> passportList 
+                    = DBConnect.Entities.international_passports.ToList();
+                passportList.ForEach(delegate (international_passports ip) {
+                    if (ip.client_id == client.id) 
+                        DBConnect.Entities.international_passports.Remove(ip);
+                });
+
                 DBConnect.Entities.clients.Remove(client);
                 DBConnect.Entities.SaveChanges();
             }
